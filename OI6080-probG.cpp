@@ -1,3 +1,8 @@
+// 题目类型: 鱼塘类
+// 思路:
+// 1.先获得每个鱼塘可以钓的钓鱼时间，同时获得可以钓的鱼塘
+// 2.以每个鱼塘的钓鱼时间为基准，对最多走到该鱼塘的情况做贪心算法，算出最大可钓的鱼(每次都选当前可以钓的最大的鱼)
+// 3.然后选出最大的时间
 /**
  * 
 题目描述
@@ -55,18 +60,10 @@ typedef struct {
     int rest_time = 0; //上个鱼塘到这个鱼塘总花费时间
 } objekt;
 int main() {
-
-    priority_queue<pair<int,int>> m1;
-
     objekt obj[100001];
     int N;
     cin >> N;
     for(int i=0;i<N;i++) {
-        // pair<int,int> p;
-        // cin >> p.first; // p.first 鱼塘数量
-        // p.second = i;
-        // m1.push(p);
-        //         obj[i].rest = p.first;
         cin >> obj[i].rest;
     }
 
@@ -81,30 +78,41 @@ int main() {
     cin >> limit_time;
 
     obj[0].rest_time = limit_time;
-    int limit_xiabiao = 0;
+    int limit_xiabiao = N; //不是0!
+    //不是N-1
     for(int i=1;i<N;i++) {
         obj[i].rest_time = obj[i-1].rest_time - obj[i-1].next_time;
         if(obj[i].rest_time < 0) {
             limit_xiabiao = i;
             break;
         }
+    } //计算枚举边界
+    int resmax = 0;
+    for(int i=0;i<limit_xiabiao;i++) { //枚举所有可能出现的钓鱼剩余时间
+        int res = 0;//
+        priority_queue<pair<int,int>> m1;
+        int rest_time = obj[i].rest_time;
+        for (int j=0;j<i+1;j++) {
+            pair<int,int> p1;
+            p1.first = obj[j].rest; //first: 该鱼塘剩余的鱼的数量是多少?
+            p1.second = j; //second: 哪个鱼塘?
+            m1.push(p1); //放入优先队列
+        } //初始化该情境下的优先队列
+        //rest_time>0: 还有钓鱼时间
+        //m1.empty: 鱼塘还有鱼
+        while (rest_time > 0 && !m1.empty()) {
+            pair<int,int> p1 = m1.top();
+            int index = p1.second; //哪个鱼塘?
+            res += p1.first; //钓到的鱼
+            m1.pop();
+            if (p1.first - obj[index].sub> 0) { //该鱼塘还有鱼?
+                p1.first -= obj[index].sub; //更新鱼的数量
+                m1.push(p1); //重新加回去，还得参与运算
+            }
+            rest_time -= 1;//最后别忘了减时间
+        }
+        resmax = max(resmax, res);
     }
-
-    for(int i=0;i<limit_xiabiao;i++) {
-        pair<int,int> p;
-        p.first = obj[i].rest;
-        p.second = i;
-        m1.push(p);
-    }
-
-    int res = 0;
-    while() {
-        pair<int,int> out = m1.top();
-        out.first -= obj[0].sub;
-        res += obj[0].sub;
-        if(out.first <= 0) m1.pop();
-
-    }
-
+    cout << resmax << endl;
     return 0;
 }
