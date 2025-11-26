@@ -17,7 +17,7 @@ int main() {
             cout << "Shun Zi" << endl;
             shunzi = 1;
             return 0;
-        }
+            }
     }
     cout << "Dan Zhang" << endl;
     return 0;

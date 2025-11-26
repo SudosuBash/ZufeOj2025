@@ -1,24 +1,25 @@
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
+// int res[40][40] = {0};
 int main() {
     int n;
     cin >> n;
-    int pai[21] = {0};
-    for (int i=0;i<n;i++) {
-        cin >> pai[i];
+    // for (int i = 0; i < n; i++) {
+    //     for (int j = 0; j < n; j++) {
+    //         res[i][j] = 1;
+    //     }
+    // }
+    int gezi = n*n;
+    unsigned long long result=1; //方案
+    n = (n+1) / 2;
+    gezi -= n;
+    for (int i = 1; i <= n; i++) {
+        result = result * i;
     }
-    int shunzi = 0;
-    for (int i=0;i<=n-5;i++) {
-        if (pai[i+1] == pai[i]+1 &&
-            pai[i+2] == pai[i+1]+1 &&
-            pai[i+3] == pai[i+2]+1 &&
-            pai[i+4] == pai[i+3]+1) {
-            cout << "Shun Zi" << endl;
-            shunzi = 1;
-            return 0;
-        }
-    }
-    cout << "Dan Zhang" << endl;
+    cout << gezi << endl;
+    cout << result << endl;
     return 0;
 }

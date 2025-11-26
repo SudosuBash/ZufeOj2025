@@ -6,83 +6,41 @@ int main() {
     int n;
     cin >> n;
 
-    int u1 = 6 * n + 3 - (n*2) - n - 2;
-    for (int i=0;i<n*2;i++) {
-        for (int j=0;j<n*2;j++) {
-            cout << ".";
+    int a[12][7] = {0};
+    for (int i=0;i<n;i++) {
+        int w; //WEEK W
+        string d; //DAY D
+        cin >> w >> d;
+        int day = 0;
+        if (d == "Mon") {
+            day = 0;
+        } else if (d == "Tue") {
+            day = 1;
+        } else if (d == "Wed") {
+            day = 2;
+        } else if (d == "Thu") {
+            day = 3;
+        } else if (d == "Fri") {
+            day = 4;
+        } else if (d == "Sat") {
+            day = 5;
+        } else if (d == "Sun") {
+            day = 6;
         }
-        cout << "@";
-        for (int j=0;j<n;j++) {
-            cout << ".";
+        a[w-1][day] = 1;
+    }
+    int sumd = 0;
+    for (int i=0;i<12;i++) {
+        int fin = 0;
+        for (int j=0;j<7;j++) {
+            fin += a[i][j];
         }
-        cout << "@";
-        for (int j=0;j<u1;j++) {
-            cout << ".";
-        }
-        cout << endl;
+        sumd += (fin >= 5);
     }
-
-    //中间一行
-    cout << ".";
-    for (int j=0;j<n*2;j++) {
-        cout << "@";
+    if (sumd >= 8) {
+        cout << "Ayaka Yes!" << endl;
+    } else {
+        cout << "Ayaka No!" << endl;
     }
-    for (int j=0;j<n;j++) {
-        cout << ".";
-    }
-    cout << "@";
-    u1 =6 * n + 3 - (n*2) - n - 2;
-    for (int j=0;j<n;j++) {
-        cout << ".";
-    }
-    cout << "@";
-
-    for (int j=0;j<u1-3-n;j++) {
-        cout << ".";
-    }
-    cout << "@.";
-    cout << endl;
-
-
-    for (int i=0;i<n*2-2;i++) {
-        cout << ".@";
-        for (int j=0;j<n*2-2;j++) {
-            cout << ".";
-        }
-        cout << "@";
-        for (int j=0;j<n;j++) {
-            cout << ".";
-        }
-        cout << "@";
-        u1 =6 * n + 3 - (n*2) - n - 2;
-        for (int j=0;j<n;j++) {
-            cout << ".";
-        }
-        cout << "@";
-
-        for (int j=0;j<u1-3-n;j++) {
-            cout << ".";
-        }
-        cout << "@." << endl;
-    }
-
-    cout << ".";
-    for (int j=0;j<n*2;j++) {
-        cout << "@";
-    }
-    for (int j=0;j<n;j++) {
-        cout << ".";
-    }
-    cout << "@";
-    u1 =6 * n + 3 - (n*2) - n - 2;
-    for (int j=0;j<n;j++) {
-        cout << ".";
-    }
-    cout << "@";
-
-    for (int j=0;j<u1-3-n;j++) {
-        cout << "@";
-    }
-    cout << "@.";
-    cout << endl;
+    return 0;
 }
