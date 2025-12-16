@@ -11,7 +11,11 @@
                 "-Wall",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.out"
+                "${fileDirname}/${fileBasenameNoExtension}.out",
+                "-I${workspaceFolder}",
+                "-I/opt/homebrew/opt/ncurses/include",
+                "-L/opt/homebrew/opt/ncurses/lib",
+                "-lncurses"
             ],
             "group": {
                 "kind": "build",

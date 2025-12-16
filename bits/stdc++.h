@@ -6,4 +6,5 @@
 #include <algorithm>
 #include <stdlib.h>
 #include <cstring>
+#include <map>
 #endif

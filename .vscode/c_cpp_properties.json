@@ -3,12 +3,11 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**",
                 "${workspaceFolder}"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
-            "cStandard": "c17",
+            "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "macos-clang-arm64"
         }
