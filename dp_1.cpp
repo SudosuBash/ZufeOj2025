@@ -36,8 +36,11 @@ int main() {
 	for(int i=1;i<=n;i++) {
 		cin >> rl[i] >> jk[i];
 	}
-	for(int i=1;i<=n;i++) { //所有人力
-		for(int j=1;j<=m;j++) {
+	// for(int i=1;i<=n;i++) { //所有人力
+	// 	for(int j=1;j<=m;j++) {
+	for(int j=1;j<=m;j++) {
+		for(int i=1;i<=n;i++) { //所有人力
+		
 			if(j < rl[i]) { //现在所拥有的人力比需要的人力小
 				dp[i][j] = dp[i-1][j]; //不能挖，继承上一个状态的值
 			} else {
