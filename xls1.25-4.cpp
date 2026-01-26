@@ -1,11 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-void dfs(int index,int top,int bottom) {
-    
-}
-
+typedef long long ll;
 int main() {
 
-}   
+}
