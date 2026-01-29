@@ -35,9 +35,9 @@ void dijistra(int u,int v) {
 
         //为什么是 '!=' 呢? 
         /**
-         * 优先队列所有后面入队的值都会比这个小
+         * 优先队列所有后面入队的值都会比fro.dis小
          * 在入队的时候老早把对应的disc给改了
-         * 所以 '!=' 也可以
+         * 所以 '!=' 也可以，更准确地说，应该是'>'
          */
         if(fro.dis != disc[fro.num]) 
             continue;
@@ -48,9 +48,9 @@ void dijistra(int u,int v) {
             if(c[index][to] + disc[fro.num] < disc[to]) { 
                 // c[index][to]: 当前路径权值
                 // disc[fro.num]: 已经处理过的权值
+                // disc[to]: 下一个点的权值
                 disc[to] = min(c[index][to] + disc[fro.num], disc[to]);
                 que.push(node{disc[to],to});   
-                
             }
         }
     }
